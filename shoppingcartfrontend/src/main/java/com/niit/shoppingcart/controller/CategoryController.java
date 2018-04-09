@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.niit.shopingcart.dao.CategoryDAO;
 import com.niit.shopingcart.domain.Category;
@@ -19,6 +21,10 @@ import com.niit.shopingcart.domain.Category;
 @Controller
 public class CategoryController {
 
+	// we need to call CategoryDAO methods
+	// get,save,update,delete,list
+
+	// 1. inject the CategoryDAO and Category
 	@Autowired
 	private CategoryDAO categoryDAO;
 
@@ -48,11 +54,17 @@ public class CategoryController {
 
 	@PutMapping("/category/update/")
 	public ModelAndView updateCategory(@ModelAttribute Category category) {
+		// navigate to home page
 		ModelAndView mv = new ModelAndView("home");
+
+		// call save method of categoryDAO
 		if (categoryDAO.update(category) == true) {
+			// add success message
 			mv.addObject("successMessage", "The category updated successfully");
 		} else {
+			// add failure message
 			mv.addObject("errorMessage", "Could not update the category.");
+
 		}
 		return mv;
 
@@ -61,11 +73,17 @@ public class CategoryController {
 	@GetMapping("/category/delete")
 	public ModelAndView deleteCategory(@RequestParam String id) {
 		System.out.println("going to delete category : " + id);
+		// navigate to home page
 		ModelAndView mv = new ModelAndView("redirect:/managecategories");
+		// we supposed to fetch the latest categories
+		// and add to httpSession
+		// based on id, fetch the details from categoryDAO
 		if (categoryDAO.delete(id) == true) {
+			// add success message
 			mv.addObject("successMessage", "The category deleted successfully");
 
 		} else {
+			// add failure message
 			mv.addObject("errorMessage", "Could not delete the category.");
 
 		}
@@ -77,7 +95,9 @@ public class CategoryController {
 	@GetMapping("/category/edit")
 	public ModelAndView editCategory(@RequestParam String id) {
 		ModelAndView mv = new ModelAndView("redirect:/managecategories");
+		// based on category id fetch category details.
 		category = categoryDAO.get(id);
+		// mv.addObject("selectedCategory", category);
 		httpSession.setAttribute("selectedCategory", category);
 
 		return mv;

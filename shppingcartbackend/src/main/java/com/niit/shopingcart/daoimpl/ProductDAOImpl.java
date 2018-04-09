@@ -23,13 +23,16 @@ public class ProductDAOImpl implements ProductDAO {
 	private Product product;
 
 	public boolean save(Product product) {
+		// store in the database.
 		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(product);
+			sessionFactory.getCurrentSession().save(product);
 			return true;
 		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
+
 	}
 
 	public boolean update(Product product) {
@@ -37,6 +40,7 @@ public class ProductDAOImpl implements ProductDAO {
 			sessionFactory.getCurrentSession().update(product);
 			return true;
 		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -44,7 +48,9 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	public Product get(String emailID) {
+		// it will fetch the record based on emailID and store in Product class
 		return sessionFactory.getCurrentSession().get(Product.class, emailID);
+
 	}
 
 	public boolean delete(String emailID) {
@@ -53,9 +59,12 @@ public class ProductDAOImpl implements ProductDAO {
 			if (product == null) {
 				return false;
 			}
+
 			sessionFactory.getCurrentSession().delete(product);
+
 			return true;
 		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -63,15 +72,31 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	public List<Product> list() {
-	return sessionFactory.getCurrentSession().createQuery("from Product").list();
+	return	sessionFactory.getCurrentSession().createQuery("from Product").list();
 	}
+
+	public List<Product> search(String searchString) {
+		
+		String hql ="from Product where description like '%"
+				+ searchString + "%'";
+		
+	return	sessionFactory.getCurrentSession().createQuery(hql).list();
+		
+	
+	}
+
+	public List<Product> search(String searchString, int maxPrice) {
+		
+		String hql ="from Product where description like '%"
+				+ searchString + "%'  and price < " +
+				maxPrice;
+		
+	return	sessionFactory.getCurrentSession().createQuery(hql).list();
+
+	}
+
+	public List<Product> search(String searchString, int minPrice, int maxPrice) {
+		return null;
+	}
+
 }
-
-
-
-
-
-
-
-
-

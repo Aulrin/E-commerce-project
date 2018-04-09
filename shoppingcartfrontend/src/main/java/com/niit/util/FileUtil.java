@@ -1,42 +1,33 @@
 package com.niit.util;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 
+import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+@Component // create singleton instance and name is fileutil
 public class FileUtil {
-	
-	public static boolean copyFile(MultipartFile file, String fileName)
-	{
-		if (!file.isEmpty()) {
-			try {
-				byte[] bytes = file.getBytes();
 
-				// Creating the directory to store file
-				String rootPath = System.getProperty("catalina.home"); //catalina shows location of tomcat
-				File dir = new File(rootPath + File.separator + fileName );
-				if (!dir.exists())
-					dir.mkdirs();
-
-				// Create the file on server
-				File serverFile = new File(dir.getAbsolutePath()
-						+ File.separator + fileName);
-				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(serverFile));
-				stream.write(bytes);
-				stream.close();
-
-
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		} else {
-			return false;
+	@Autowired
+	private HttpSession httpSession;
+	private static final Logger logger = LoggerFactory.getLogger(FileUtil.class);
+	private static String rootPath = System.getProperty("niitprojects.dir");
+	public boolean fileCopyNIO(MultipartFile file, String fileName) {
+		System.out.println(rootPath);
+		File dest = new File(rootPath + File.separator + fileName);
+		System.out.println("where it is uploading ??" + dest.getAbsolutePath());
+		try {
+			file.transferTo(dest);
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		return false;
 	}
-
 }

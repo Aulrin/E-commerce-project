@@ -23,6 +23,8 @@ public class Category {
 	
 	@OneToMany(mappedBy="category",fetch = FetchType.EAGER)
 	private Set<Product> products;
+
+
 	public String getId() {
 		return id;
 	}

@@ -42,7 +42,8 @@ public class ApplicationContextConfig {
 		
 		properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 		properties.put("hibernate.show_sql", "true");
-		return properties;
+/*		properties.put("hibernate.hbm2ddl.auto","update");
+*/		return properties;
 	}
 
 	@Autowired

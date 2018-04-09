@@ -1,6 +1,5 @@
 package com.niit.shopingcart.domain;
 
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -62,7 +61,7 @@ public class User {
 		return registeredDate;
 	}
 	public void setRegisteredDate(String registeredDate) {
-		this.registeredDate = new Date(System.currentTimeMillis())+"";
+		this.registeredDate = registeredDate;
 	}
 	
 }

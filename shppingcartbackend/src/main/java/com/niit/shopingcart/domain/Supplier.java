@@ -17,7 +17,6 @@ public class Supplier {
 	
 	@Id
 	private String id;
-	
 	private String name;
 	
 	private String address;
@@ -32,6 +31,8 @@ public class Supplier {
 	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
+
+
 
 	public String getId() {
 		return id;

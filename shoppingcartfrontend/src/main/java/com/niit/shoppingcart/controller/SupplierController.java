@@ -28,12 +28,23 @@ public class SupplierController {
 	@Autowired
 	HttpSession httpSession;
 
+
+	/*@RequestMapping(name = "/getSupplier/", method = RequestMethod.GET)
+	public ModelAndView getSupplier(@RequestParam String id) {
+		// based on id, fetch the details from categoryDAO
+		supplier = supplierDAO.get(id);
+		// navigate to home page
+		ModelAndView mv = new ModelAndView("home");
+		mv.addObject("supplier", supplier);
+		return mv;
+	}*/
+
 	@PostMapping("/supplier/save/")
 
 	public ModelAndView saveSupplier(@RequestParam("id") String id,
 			@RequestParam("name") String name,
 			@RequestParam("address") String address) {
-		System.out.println("saveSupplier method is calling");
+System.out.println("saveSupplier method is calling");
 		ModelAndView mv = new ModelAndView("redirect:/managesuppliers");
 		supplier.setId(id);
 		supplier.setName(name);
@@ -49,32 +60,51 @@ public class SupplierController {
 
 	@PutMapping("/supplier/update/")
 	public ModelAndView updateSupplier(@ModelAttribute Supplier supplier) {
+		// navigate to home page
 		ModelAndView mv = new ModelAndView("home");
+
+		
 		if (supplierDAO.update(supplier) == true) {
+			// add success message
 			mv.addObject("successMessage", "The supplier updated successfully");
 		} else {
+			// add failure message
 			mv.addObject("errorMessage", "Could not update the supplier.");
+
 		}
 		return mv;
+
 	}
 
 	@GetMapping("/supplier/delete/")
 	public ModelAndView deleteSupplier(@RequestParam String id) {
+		// navigate to home page
 		ModelAndView mv = new ModelAndView("redirect:/managesuppliers");
+		// we supposed to fetch the latest categories
+		// and add to httpSession
+	
 		if (supplierDAO.delete(id) == true) {
+			// add success message
 			mv.addObject("supplierSuccessMessage", "The supplier deleted successfully");
 
 		} else {
+			// add failure message
 			mv.addObject("supplierErrorMessage", "Could not delete the supplier.");
+
 		}
+
 		return mv;
+
 	}
 
 	@GetMapping("/supplier/edit/")
 	public ModelAndView editSupplier(@RequestParam String id) {
 		ModelAndView mv = new ModelAndView("redirect:/managesuppliers");
+		
 		supplier = supplierDAO.get(id);
+		
 		httpSession.setAttribute("selectedSupplier", supplier);
+
 		return mv;
 	}
 

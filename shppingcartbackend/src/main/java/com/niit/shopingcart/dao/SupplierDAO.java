@@ -10,10 +10,10 @@ public interface SupplierDAO {
 	
 	public boolean update(Supplier supplier);
 	
-	public   Supplier     get(String id);
+	public Supplier get(String id);
 	
-	public   boolean    delete(String id);
+	public boolean delete(String id);
 	
-	public List<Supplier>   list();
+	public List<Supplier>list();
 
 }

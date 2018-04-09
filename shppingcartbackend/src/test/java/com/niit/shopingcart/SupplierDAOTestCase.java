@@ -42,7 +42,6 @@ public class SupplierDAOTestCase {
 	public void saveSupplierTestCase()
 	{
 		supplier = new Supplier();
-		supplier.setId("SUP-001");
 		supplier.setName("BigC");
 		supplier.setAddress("NH33 , Chennai");
 		
@@ -55,7 +54,7 @@ public class SupplierDAOTestCase {
 	@Test
 	public void updateSupplierTestCase()
 	{
-		supplier.setId("SUP-002");
+		supplier.setId("002");
 		supplier.setName("Ebay");
 		supplier.setAddress("Guindy ,chennai");
 		boolean status = supplierDAO.update(supplier);
@@ -66,7 +65,7 @@ public class SupplierDAOTestCase {
 	public void getSupplierSuccessTestCase()
 	{
 		
-	supplier= supplierDAO.get("SUP-001");
+	supplier= supplierDAO.get("001");
 	
 	assertNotNull("get supplier test case", supplier);
 	}
@@ -75,7 +74,7 @@ public class SupplierDAOTestCase {
 	public void getSupplierFailureTestCase()
 	{
 		
-	supplier= supplierDAO.get("SUP-001");
+	supplier= supplierDAO.get("001");
 	
 	assertNull("get supplier test case", supplier);
 	}
@@ -83,7 +82,7 @@ public class SupplierDAOTestCase {
 	@Test
 	public void deleteSupplierSuccessTestCase()
 	{
-	boolean status = supplierDAO.delete("SUP-001");
+	boolean status = supplierDAO.delete("001");
 	assertEquals("delete supplier succss test case" , true, status);
 	
 	}
@@ -91,7 +90,7 @@ public class SupplierDAOTestCase {
 	@Test
 	public void deleteSupplierFailureTestCase()
 	{
-	boolean status = supplierDAO.delete("SUP-001");
+	boolean status = supplierDAO.delete("003");
 	assertEquals("delete supplier failure test case" , false, status);
 	
 	}

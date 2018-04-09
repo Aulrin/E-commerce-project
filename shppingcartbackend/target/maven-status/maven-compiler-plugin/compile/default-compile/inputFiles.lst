@@ -1,10 +1,13 @@
 E:\niitprojects\shppingcartbackend\src\main\java\com\niit\shopingcart\config\ApplicationContextConfig.java
 E:\niitprojects\shppingcartbackend\src\main\java\com\niit\shopingcart\domain\Category.java
 E:\niitprojects\shppingcartbackend\src\main\java\com\niit\shopingcart\daoimpl\UserDAOImpl.java
+E:\niitprojects\shppingcartbackend\src\main\java\com\niit\shopingcart\dao\CartDAO.java
 E:\niitprojects\shppingcartbackend\src\main\java\com\niit\shopingcart\dao\SupplierDAO.java
+E:\niitprojects\shppingcartbackend\src\main\java\com\niit\shopingcart\domain\Cart.java
 E:\niitprojects\shppingcartbackend\src\main\java\com\niit\shopingcart\dao\CategoryDAO.java
 E:\niitprojects\shppingcartbackend\src\main\java\com\niit\shopingcart\domain\Supplier.java
 E:\niitprojects\shppingcartbackend\src\main\java\com\niit\shopingcart\domain\User.java
+E:\niitprojects\shppingcartbackend\src\main\java\com\niit\shopingcart\daoimpl\CartDAOImpl.java
 E:\niitprojects\shppingcartbackend\src\main\java\com\niit\shopingcart\daoimpl\ProductDAOImpl.java
 E:\niitprojects\shppingcartbackend\src\main\java\com\niit\shopingcart\dao\UserDAO.java
 E:\niitprojects\shppingcartbackend\src\main\java\com\niit\shopingcart\domain\Product.java
