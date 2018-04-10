@@ -2,6 +2,7 @@ package com.niit.shoppingcart.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -66,7 +67,8 @@ public class ProductController {
 			@RequestParam("price") String price,
 			@RequestParam("categoryID") String categoryID,
 			@RequestParam("supplierID") String supplierID,
-			@RequestParam("file") MultipartFile file
+			@RequestParam("file") MultipartFile file,
+			HttpServletRequest req
 			
 			) {
 
@@ -81,7 +83,7 @@ public class ProductController {
 		if (productDAO.save(product)) {
 			mv.addObject("productSuccessMessage", "The product created successfully");
 			// call upload image method
-			if(fileUtil.fileCopyNIO(file, id +".PNG"))
+			if(fileUtil.fileCopyNIO(file, id +".PNG",req))
 			{
 				mv.addObject("uploadMessage", "product image successfully updated");
 			}

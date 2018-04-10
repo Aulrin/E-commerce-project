@@ -26,7 +26,6 @@ public class HomeController {
 
 	@Autowired
 	private HttpSession httpSession;
-	private static String imageDirectory = "E:\\niitprojects\\shoppingcartfrontend\\src\\main\\webapp\\resources\\images";
 
 	@GetMapping("/")
 	public ModelAndView home(HttpServletRequest request) {
@@ -37,11 +36,6 @@ public class HomeController {
 		List<Category> categories = categoryDAO.list();
 		// add the data to mv
 		httpSession.setAttribute("categories", categories);
-		httpSession.setAttribute("imageDirectory", imageDirectory);
-		String root = request.getContextPath();
-		String imageFolder = root + File.separator + "src" + File.separator + "main" + File.separator + "webapp"
-				+ File.separator + "resources" + File.separator;
-		httpSession.setAttribute("imageFolder", imageFolder);
 		return mv;
 	}
 

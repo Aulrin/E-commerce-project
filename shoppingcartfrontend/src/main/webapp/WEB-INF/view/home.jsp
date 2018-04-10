@@ -19,8 +19,6 @@
 
 	<jsp:include page="loginheader.jsp"></jsp:include>
 
-	<hr color="blue" size="5">
-
 	<jsp:include page="product_menu.jsp"></jsp:include>
 
 	<c:if test="${isUserSelectedProduct==true}">

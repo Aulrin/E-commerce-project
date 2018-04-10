@@ -10,17 +10,11 @@
 </head>
 <body>
 <img alt="" src="${selectedProductImage}"> <br>
-${selectedProduct.id}
 <img alt="" src="resources/images/${selectedProduct.id}.PNG">
 product name: ${selectedProduct.name} <br>
 price : ${selectedProduct.price} <br>
 Description : ${selectedProduct.description} <br>
-<a href="cart/add/${selectedProduct.id}">Add to Cart</a>
-<c:forEach items="${products}" var="product">
-${product.name}
-${product.description}
-${product.price}
-<img alt="" src="resources/images/${product.id}.PNG">
-</c:forEach>
+<a href="cart/add/${selectedProduct.id}">Add to Cart</a><br>
+
 </body>
 </html>
