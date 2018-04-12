@@ -136,11 +136,11 @@ public class ProductController {
 		return mv;
 	}
 
-	@GetMapping("/products")
+	@GetMapping("products")
 	public ModelAndView getAllCategories() {
 		ModelAndView mv = new ModelAndView("home");
-		List<Product> categories = productDAO.list();
-		mv.addObject("products", categories);
+		List<Product> products = productDAO.list();
+		mv.addObject("products", products);
 		return mv;
 	}
 	@GetMapping("search")

@@ -55,7 +55,8 @@ public class UserController {
 			// fetch how amy products are added to the cart.
 			// this number add to httpSession.
 			List<Cart> carts = cartDAO.list(user.getEmailID());
-			httpSession.setAttribute("size", carts.size());
+			int cartSize = carts.size();
+			httpSession.setAttribute("size",cartSize);
 			httpSession.setAttribute("carts", carts);
 			if (user.getRole() == 'A') {
 				httpSession.setAttribute("isAdmin", true);

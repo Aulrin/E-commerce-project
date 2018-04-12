@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 @Entity //simple pojo class or model class,to specify it is not normal class- it is database entry
 public class Cart {
 	@Id    //to specify that it is primary key
-	//@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private String emailID;
 	private String productName;

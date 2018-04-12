@@ -1,6 +1,5 @@
 package com.niit.shoppingcart.controller;
 
-import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shopingcart.dao.CategoryDAO;
+import com.niit.shopingcart.dao.ProductDAO;
 import com.niit.shopingcart.domain.Category;
+import com.niit.shopingcart.domain.Product;
 
 @Controller
 public class HomeController {
@@ -26,6 +27,12 @@ public class HomeController {
 
 	@Autowired
 	private HttpSession httpSession;
+	
+	@Autowired
+	private Product product;
+	
+	@Autowired
+	private ProductDAO productDAO;
 
 	@GetMapping("/")
 	public ModelAndView home(HttpServletRequest request) {
@@ -34,8 +41,10 @@ public class HomeController {
 		// we need to fetch all the categories
 		// Autowire CategoryDAO and category
 		List<Category> categories = categoryDAO.list();
+		List<Product> products = productDAO.list();
 		// add the data to mv
 		httpSession.setAttribute("categories", categories);
+		httpSession.setAttribute("products",products);
 		return mv;
 	}
 
@@ -51,9 +60,9 @@ public class HomeController {
 		// at the time of login, we add user id in http session
 		// at the time of logout, we need to remove user id from http session.
 		ModelAndView mv = new ModelAndView("home");
-		// we were not able to see menu items after logout
-		// will modify this code.
-		httpSession.invalidate();
+		httpSession.removeAttribute("isLoggedIn");
+		httpSession.removeAttribute("welcomeMessage");
+		httpSession.removeAttribute("loggedInUserID");
 		mv.addObject("logoutMessage", "You are successfully logged out");
 		return mv;
 	}

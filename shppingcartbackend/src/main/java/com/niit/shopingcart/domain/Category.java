@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table
-public class Category {
+public class Category{
 	@Id
 	private String id;
 	

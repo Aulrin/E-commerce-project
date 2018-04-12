@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shopingcart.dao.CartDAO;
@@ -40,13 +41,14 @@ Logger log = LoggerFactory.getLogger(CartController.class);
 		//there should be on update method which take 
 		//email id as paramter.
 		String loggedInUserID =(String) httpSession.getAttribute("loggedInUserID");
+		
 		if (cartDAO.update(loggedInUserID))
 		{
 			mv.addObject("successMessage", "Your order placed successfully...");
 		}
 		else
 		{
-			mv.addObject("errorMessage", "Your order could placed.   please try after some time.");
+			mv.addObject("errorMessage", "Your order could not placed.   please try after some time.");
 		}
 		
 		return mv;
@@ -54,41 +56,11 @@ Logger log = LoggerFactory.getLogger(CartController.class);
 	}
 	
 	
-	/*@PostMapping("/product/cart/add")
-	public ModelAndView addToCart(@RequestParam String productName,
-			@RequestParam int price, @RequestParam String quantity)
-	
-	{
-		ModelAndView mv = new ModelAndView("home");
-		String loggedInUserID = (String) httpSession.getAttribute("loggedInUserID");
-		if(loggedInUserID==null)
-		{
-			mv.addObject("errorMessage", "Please login to add any product to cart");
-			return mv;
-		}
-		
-		cart.setEmailID(loggedInUserID);
-		cart.setPrice(price);
-		cart.setQuantity(Integer.parseInt(quantity));
-		
-		if(cartDAO.save(cart))
-		{
-			mv.addObject("successMessage", "The product add to cart successfully");
-		}
-		else
-		{
-			mv.addObject("errorMessage", "Could not add the product to cart..please try after some time");
-		}
-		return mv;
-		
-	}*/
-	
 	@GetMapping("/cart/add/{productID}")
 	public ModelAndView addToCart(
 			@PathVariable String productID	)
 	
 	{
-		//ModelAndView mv = new ModelAndView("home");
 		ModelAndView mv = new ModelAndView("redirect:/");
 		String loggedInUserID = (String) httpSession.getAttribute("loggedInUserID");
 		if(loggedInUserID==null)
@@ -98,7 +70,6 @@ Logger log = LoggerFactory.getLogger(CartController.class);
 		}
 		//get the other details of product from productDAO.get()
 		product = productDAO.get(productID);
-		
 		cart.setEmailID(loggedInUserID);
 		cart.setPrice(product.getPrice());
 		cart.setProductID(productID);
@@ -114,10 +85,7 @@ Logger log = LoggerFactory.getLogger(CartController.class);
 			mv.addObject("errorMessage", "Could not add the product to cart..please try after some time");
 		}
 		return mv;
-		
 	}
-	
-	
 	//get my cart details
 	@GetMapping("/mycart")
 	public ModelAndView  getMyCartDetails()
@@ -126,7 +94,6 @@ Logger log = LoggerFactory.getLogger(CartController.class);
 		ModelAndView mv = new ModelAndView("home");
 		mv.addObject("isUserClickedMyCart", true);
 		//it will return all the products which are added to cart
-		//??
 		String loggedInUserID = (String)httpSession.getAttribute("loggedInUserID");
 		log.info("Logged in user id : " + loggedInUserID);
 		if(loggedInUserID==null)
@@ -140,4 +107,18 @@ Logger log = LoggerFactory.getLogger(CartController.class);
 		 log.debug("Ending of the method getMyCartDetails");
 		 return mv;
 	}
+	@GetMapping("/mycart/delete")
+	public ModelAndView deleteCart(@RequestParam String id) {
+		System.out.println("going to delete product : " + id);
+		ModelAndView mv = new ModelAndView("redirect:/mycart");
+		if (cartDAO.delete(id) == true) {
+			// add success message
+			mv.addObject("successMessage", "The product deleted successfully");
+		} else {
+			// add failure message
+			mv.addObject("errorMessage", "Could not delete the product.");
+		}
+		return mv;
+	}
+
 }

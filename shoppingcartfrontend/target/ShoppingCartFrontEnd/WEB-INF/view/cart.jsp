@@ -8,14 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<br>
+<a href="buy"> BUY</a>  <br>
 <c:forEach var="cart" items="${cartList}">
-<img alt="" src="resources/images/${cart.productID}.PNG"><br>
-Name  : "${cart.productName}"<br>
-Price :${cart.price}" <br>
-Quantity  :${cart.quantity}<br><br><br>
-  
+<img alt="" src="resources/images/${cart.productID}.PNG">
+Name  : <input type="text" name="price" value="${cart.productName}"> <br>
+price : <input type="text" name="price" value="${cart.price}"> <br>
+quantity  : <input type="text" name="price" value="${cart.quantity}"> <br>
 </c:forEach>
-<a href="buy"> BUY</a>
 </body>
 </html>

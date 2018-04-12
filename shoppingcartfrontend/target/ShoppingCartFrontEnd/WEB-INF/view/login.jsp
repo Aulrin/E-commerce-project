@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,15 +67,15 @@ span.psw {
     }
 }
 </style>
+<title>Login</title>
 </head>
 <body>
 
 <h2>Login Form</h2>
 
-<form action = "validate" method = "get">
+<form action = "validate" method = "post">
   <div class="imgcontainer">
-    <img src="resources/images/avatar.PNG" alt="Avatar" class="avatar">
-    <%-- <img src="<%=request.getContextPath()%>/images/user.png"> --%>
+    <img src="resources/images/images.png" alt="Avatar" class="avatar">
   </div>
 
   <div class="container">

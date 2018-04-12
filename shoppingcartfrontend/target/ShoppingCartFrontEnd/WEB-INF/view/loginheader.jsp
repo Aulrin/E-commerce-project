@@ -11,13 +11,8 @@
   <title>Insert title here</title>
 </head>
 <body>
-
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-  <img src="resources/images/logo.png" alt="website logo" style="width:40px;">
-  
-   <br>
  
     <ul class="nav navbar-nav navbar-left">
       <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -28,11 +23,11 @@
     
      <ul class="nav navbar-nav navbar-right">
       <li><a href="registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-           <c:if test="${isLoggedIn==true}">
+      <c:if test="${isLoggedIn==true}">
        <li><a href="mycart"><span class="glyphicon glyphicon-shopping-cart"></span> MyCart(${size})</a></li>
        </c:if>
       
-       </ul>
+    </ul>
     
     
   </div>
