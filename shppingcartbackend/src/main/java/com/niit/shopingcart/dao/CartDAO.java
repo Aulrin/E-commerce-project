@@ -13,11 +13,12 @@ public interface CartDAO {
 	
 	public boolean update(String emailID);
 	
-	public Cart get(String id);
+	public Cart get(int id);
 	
-	public boolean delete(String id);
+	public boolean delete(int id);
 	
 	public List<Cart> list(String emailID);
 	
+
 
 }

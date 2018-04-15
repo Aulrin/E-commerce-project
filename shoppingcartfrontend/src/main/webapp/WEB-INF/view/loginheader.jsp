@@ -29,11 +29,11 @@
      <ul class="nav navbar-nav navbar-right">
       <li><a href="registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
            <c:if test="${isLoggedIn==true}">
-       <li><a href="mycart"><span class="glyphicon glyphicon-shopping-cart"></span> MyCart(${size})</a></li>
+       <li><a href="mycart"><span class="glyphicon glyphicon-shopping-cart"></span> MyCart(${cartSize})</a></li>
        </c:if>
       
        </ul>
-    
+   
     
   </div>
 </nav>

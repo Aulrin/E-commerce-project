@@ -5,17 +5,71 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<title>My Cart</title>
+
+<style>
+/* td {padding:5px;
+	width: 150px;
+	font-size: 15px;
+} */
+hr {
+height: 1px;
+background-color:black;
+border: 0 none;
+}
+input[type="text"] {
+border:0;
+background-color:ghostwhite;
+padding:5px;
+}
+th {
+font-family:calibri;
+text-align:center;
+font-size:20px;
+}
+</style>
 </head>
 <body>
-<br>
-<c:forEach var="cart" items="${cartList}">
-<img alt="" src="resources/images/${cart.productID}.PNG"><br>
-Name  : "${cart.productName}"<br>
-Price :${cart.price}" <br>
-Quantity  :${cart.quantity}<br><br><br>
-  
-</c:forEach>
-<a href="buy"> BUY</a>
+<p style="margin:0px 50px;font-size:30px;font-family:tahoma;">Items in Your Cart</p><hr>
+<form action="checkout" method="post">
+  <table style="text-align:center;" class="table-striped">
+    <thead>
+      <tr>
+        <th style="width:10%;">Cart id</th>
+        <th style="text-align:center;">Product</th>
+        <th style="width:30%;">Product Name</th>
+        <th>Quantity</th>
+        <th style="width:10%;">Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    
+    <tbody>
+    <c:forEach var="cart" items="${cartList}">
+      <tr>
+     	 <td>${cart.id}</td>
+     	 <td style="width:15%;"><img style="height:130px;width:220px;padding:20px;" alt="${cart.productName}" src="resources/images/${cart.productID}.PNG"></td>
+     	 <td style="padding:10px 20px;">${cart.productName}</td>
+      	 <td style="width:15%;">
+			<input type="text" style="text-align:center;width:20%;" name="cartquantity" value="${cart.quantity}">
+		</td>
+		<td>${cart.price}</td>
+		<td><button style="width:50%;" class="btn btn-danger" formaction="deleteFromCart?id=${cart.id}" method="get"> Delete </button></td>
+		
+      </tr>
+    </c:forEach>
+    </tbody>
+    
+  </table>
+  <hr><br>
+  </form>
+  <p style="text-align:right;margin:0px 80px;">
+					<a style="width:10%" class="btn btn-primary" href="checkout"> Check Out </a></p>
+ 
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.niit.shopingcart.domain;
 
 import java.util.Random;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;

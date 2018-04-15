@@ -60,6 +60,10 @@ public class HomeController {
 		// at the time of login, we add user id in http session
 		// at the time of logout, we need to remove user id from http session.
 		ModelAndView mv = new ModelAndView("home");
+		List<Category> categories = categoryDAO.list();
+		List<Product> products = productDAO.list();
+		httpSession.setAttribute("categories", categories);
+		httpSession.setAttribute("products",products);
 		httpSession.removeAttribute("isLoggedIn");
 		httpSession.removeAttribute("welcomeMessage");
 		httpSession.removeAttribute("loggedInUserID");

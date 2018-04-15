@@ -21,7 +21,7 @@ public class CartDAOImpl implements CartDAO {
 
 	@Autowired
 	private Cart cart;
-
+	
 	public boolean save(Cart cart) {
 		// store in the database.
 		try {
@@ -48,29 +48,22 @@ public class CartDAOImpl implements CartDAO {
 
 	}
 
-	public Cart get(String id) {
+	public Cart get(int id) {
 		// it will fetch the record based on id and store in Cart class
 		return sessionFactory.getCurrentSession().get(Cart.class, id);
 
 	}
 
-	public boolean delete(String id) {
-		try {
-			cart = get(id);
-			if (cart == null) {
-				return false;
-			}
-
-			sessionFactory.getCurrentSession().delete(cart);
-
-			return true;
-		} catch (HibernateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-
-	}
+public boolean delete(int id) {
+	String hql="delete from Cart where id='"+ id +"'";
+	try {
+		sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
+		return true;
+	} catch (HibernateException e) {
+		e.printStackTrace();
+		return false;
+	}}
+	
 
 	public List<Cart> list(String emailID) {
 		//select * from cart where emialID = ?
@@ -78,7 +71,7 @@ public class CartDAOImpl implements CartDAO {
 			.add(Restrictions.eq("emailID", emailID)).list();
 		
 	}
-
+	
 	public boolean update(String emailID) {
 		String hql = "update Cart set status = 'O' where emailid='" +
 				emailID +"'";
@@ -92,7 +85,6 @@ public class CartDAOImpl implements CartDAO {
 		catch (Exception e) {
 			return false;
 		}
-		
-		
-	}
+}
+
 }

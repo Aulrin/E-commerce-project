@@ -39,6 +39,14 @@
 		<c:when test="${isUserClickedMyCart==true}">
 			<jsp:include page="cart.jsp"></jsp:include>
 		</c:when>
+		<c:when test="${deleteCartSuccess==true}">
+			<jsp:include page="cart.jsp"></jsp:include>
+		</c:when>
+		<c:when test="${checkoutClicked==true}">
+			<jsp:include page="checkout.jsp"></jsp:include>
+		</c:when>
+
+
 		<c:otherwise>
 			<jsp:include page="displayallproduct.jsp"></jsp:include></c:otherwise>
 	</c:choose>
