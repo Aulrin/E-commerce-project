@@ -33,34 +33,12 @@
 						</tr>
 						<tr>
 							<td>Description</td>
-							<td>${selectedProduct.description}"></td>
+							<td>${selectedProduct.description}</td>
 
 						</tr>
-	<!-- 					<tr>
-							<td>Quantity</td>
-							<td>
-						<input type="text" name='quantity'>
-								<div class="quantity buttons_added">
-									<input id="minus" type="button" class="minus" value="-">
-									<input id="quantity" type="number" size="4"
-										class="input-text qty text" name="quantity" value="1" min="0"
-										step="1"> <input id="plus" type="button" class="plus"
-										value="+">
-								</div> <script>
-									var input = document
-											.getElementById('quantity');
-									document.getElementById('plus').onclick = function() {
-										input.value = parseInt(input.value, 10) + 1
-									}
-									document.getElementById('minus').onclick = function() {
-										input.value = parseInt(input.value, 10) - 1
-									}
-								</script>
-							</td>
-						</tr>
-						<tr> -->
-							<td></td>
-							<td><a href="cart/add/${selectedProduct.id}"><button>Add to Cart</button></a></td>
+						<tr>
+						<td></td>
+							<td><a href="cart/add/${selectedProduct.id}"><button>Add to Cart</button></a></td></tr>
 					</table>
 				</div>
 			</div>

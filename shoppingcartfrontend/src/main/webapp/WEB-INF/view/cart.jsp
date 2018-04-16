@@ -67,9 +67,10 @@ font-size:20px;
     
   </table>
   <hr><br>
-  </form>
+  
   <p style="text-align:right;margin:0px 80px;">
-					<a style="width:10%" class="btn btn-primary" href="checkout"> Check Out </a></p>
- 
+					<button style="width:10%;" formaction="checkout" method="post"> Check Out </button></p>
+
+</form> 
 </body>
 </html>

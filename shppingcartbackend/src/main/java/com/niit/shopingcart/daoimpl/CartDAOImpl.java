@@ -21,7 +21,7 @@ public class CartDAOImpl implements CartDAO {
 
 	@Autowired
 	private Cart cart;
-	
+
 	public boolean save(Cart cart) {
 		// store in the database.
 		try {
@@ -54,37 +54,44 @@ public class CartDAOImpl implements CartDAO {
 
 	}
 
-public boolean delete(int id) {
-	String hql="delete from Cart where id='"+ id +"'";
-	try {
-		sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
-		return true;
-	} catch (HibernateException e) {
-		e.printStackTrace();
-		return false;
-	}}
-	
-
-	public List<Cart> list(String emailID) {
-		//select * from cart where emialID = ?
-	return	sessionFactory.getCurrentSession().createCriteria(Cart.class)
-			.add(Restrictions.eq("emailID", emailID)).list();
-		
-	}
-	
-	public boolean update(String emailID) {
-		String hql = "update Cart set status = 'O' where emailid='" +
-				emailID +"'";
-		
-
-		try
-		{
-		sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
-		return true;
-		}
-		catch (Exception e) {
+	public boolean delete(int id) {
+		String hql = "delete from Cart where id='" + id + "'";
+		try {
+			sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
+			return true;
+		} catch (HibernateException e) {
+			e.printStackTrace();
 			return false;
 		}
-}
+	}
+
+	public List<Cart> list(String emailID) {
+		// select * from cart where emialID = ?
+		return sessionFactory.getCurrentSession().createCriteria(Cart.class).add(Restrictions.eq("emailID", emailID))
+				.list();
+
+	}
+
+	public boolean update(String emailID) {
+
+		try {
+			sessionFactory.getCurrentSession().update(cart);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean deleteCart(String emailID) {
+
+		String hql = "delete from Cart where emailID='" + emailID + "'";
+		try {
+			sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
+			return true;
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 }

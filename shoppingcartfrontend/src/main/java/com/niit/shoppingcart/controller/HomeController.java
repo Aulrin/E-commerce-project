@@ -64,6 +64,8 @@ public class HomeController {
 		List<Product> products = productDAO.list();
 		httpSession.setAttribute("categories", categories);
 		httpSession.setAttribute("products",products);
+		
+		httpSession.removeAttribute("isAdmin");
 		httpSession.removeAttribute("isLoggedIn");
 		httpSession.removeAttribute("welcomeMessage");
 		httpSession.removeAttribute("loggedInUserID");

@@ -48,7 +48,13 @@
 
 
 		<c:otherwise>
-			<jsp:include page="displayallproduct.jsp"></jsp:include></c:otherwise>
+			<jsp:include page="carousel.jsp"></jsp:include>
+			<jsp:include page="displayallproduct.jsp"></jsp:include>
+		</c:otherwise>
 	</c:choose>
+
+
+	<jsp:include page="footer.jsp"></jsp:include>
+
 </body>
 </html>

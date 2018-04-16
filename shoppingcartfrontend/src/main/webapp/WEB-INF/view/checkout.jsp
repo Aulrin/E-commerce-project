@@ -29,7 +29,7 @@ function CODCheck()
 
 </head>
 <body>
-${cartsum}
+
 <div class="container wrapper">
             <div class="row cart-head">
                 <div class="container">
@@ -44,7 +44,7 @@ ${cartsum}
                     <!--REVIEW ORDER-->
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            Review Order <div class="pull-right"><small><a class="afix-1" href="myCart">Edit Cart</a></small></div>
+                            Order <div class="pull-right"></div>
                         </div>
                             <div class="form-group">
                                 <div class="col-xs-12">
@@ -74,6 +74,12 @@ ${cartsum}
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <h4>Shipping Address</h4>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <div class="col-md-12"><strong>Re-Enter EmailId:</strong></div>
+                                <div class="col-md-12">
+                                    <input type="text" name="emailID" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">

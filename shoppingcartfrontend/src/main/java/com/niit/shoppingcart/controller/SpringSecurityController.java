@@ -61,7 +61,6 @@ public class SpringSecurityController {
 	public String loginError(Model model) {
 		log.debug("Starting of the method loginError");
 		model.addAttribute("errorMessage", "Invalid Credentials.  Please try again.");
-		// model.addAttribute("invalidCredentials", "true");
 		log.debug("Ending of the method loginError");
 		return "home";
 
@@ -78,40 +77,10 @@ public class SpringSecurityController {
 
 	}
 
-	// <security:form-login authentication-success-forward-url="/success"/>
-	/*
-	 * @RequestMapping("/success") public ModelAndView successForwardURL() {
-	 * log.debug("Starting of the method successForwardURL"); ModelAndView mv = new
-	 * ModelAndView("home");
-	 * 
-	 * Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	 * String loggedInUserid = auth.getName(); Collection<GrantedAuthority>
-	 * authorities = (Collection<GrantedAuthority>) auth.getAuthorities(); if
-	 * (authorities.contains("A")) { mv.addObject("isAdmin", "true");
-	 * log.debug("You are Admin"); } else { log.debug("You are not  Admin");
-	 * mv.addObject("isAdmin", "false"); // cart = cartDAO.list(userID);
-	 * mv.addObject("cart", cart); // Fetch the cart list based on user ID
-	 * List<Cart> cartList = cartDAO.list(loggedInUserid); mv.addObject("cartList",
-	 * cartList); mv.addObject("cartSize", cartList.size()); }
-	 * 
-	 * log.debug("Ending of the method successForwardURL"); return mv;
-	 * 
-	 * }
-	 */
-	/**
-	 * If we are using spring-security, this method is going to execute after login
-	 * 
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws Exception
-	 */
-	// @RequestMapping(value = "validate", method = RequestMethod.GET)
 	@RequestMapping(value = "checkRole", method = RequestMethod.GET)
 	public ModelAndView checkRole(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		log.debug("starting of the method validate");
 		ModelAndView mv = new ModelAndView("home");
-		// session = request.getSession(true);
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String userID = auth.getName();
 		session.setAttribute("loggedInUser", userID);
@@ -129,7 +98,6 @@ public class SpringSecurityController {
 			List<Cart> cartList = cartDAO.list(userID);
 			session.setAttribute("cartList", cartList);
 			session.setAttribute("cartSize", cartList.size());
-			// session.setAttribute("totalAmount", cartDAO.getTotalAmount(userID));
 
 		}
 		log.debug("Ending of the method validate");

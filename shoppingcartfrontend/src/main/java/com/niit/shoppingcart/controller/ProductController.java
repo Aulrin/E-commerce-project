@@ -143,15 +143,5 @@ public class ProductController {
 		mv.addObject("products", products);
 		return mv;
 	}
-	@GetMapping("search")
-	public ModelAndView searchProduct(@RequestParam("searchString") String searchString)
-	{
-		ModelAndView mv = new ModelAndView("home");
-		List<Product> products =  productDAO.search(searchString);
-		mv.addObject("products", products);
-		mv.addObject("isUserSelectedProduct", true);
-		log.info("Number of products with search string " +searchString +  " is/are : " + products.size());
-		return mv;
-		
-	}
+	
 }

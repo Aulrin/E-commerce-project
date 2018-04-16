@@ -56,7 +56,7 @@ public class UserController {
 			// this number add to httpSession.
 			List<Cart> carts = cartDAO.list(user.getEmailID());
 			int cartSize = carts.size();
-			httpSession.setAttribute("size",cartSize);
+			httpSession.setAttribute("cartSize",cartSize);
 			httpSession.setAttribute("carts", carts);
 			if (user.getRole() == 'A') {
 				httpSession.setAttribute("isAdmin", true);

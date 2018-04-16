@@ -75,28 +75,4 @@ public class ProductDAOImpl implements ProductDAO {
 	return	sessionFactory.getCurrentSession().createQuery("from Product").list();
 	}
 
-	public List<Product> search(String searchString) {
-		
-		String hql ="from Product where description like '%"
-				+ searchString + "%'";
-		
-	return	sessionFactory.getCurrentSession().createQuery(hql).list();
-		
-	
-	}
-
-	public List<Product> search(String searchString, int maxPrice) {
-		
-		String hql ="from Product where description like '%"
-				+ searchString + "%'  and price < " +
-				maxPrice;
-		
-	return	sessionFactory.getCurrentSession().createQuery(hql).list();
-
-	}
-
-	public List<Product> search(String searchString, int minPrice, int maxPrice) {
-		return null;
-	}
-
 }

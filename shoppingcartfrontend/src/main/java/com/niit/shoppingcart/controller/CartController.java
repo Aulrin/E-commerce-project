@@ -91,6 +91,7 @@ public class CartController {
 				mv.addObject("cartDetails", true);
 				mv.addObject("cartList", carts);
 				mv.addObject("cartSize", carts.size());
+			
 				log.debug("No of products in cart"+ carts.size());
 				log.debug("Ending of the method getMyCartDetails");
 			}
@@ -100,9 +101,9 @@ public class CartController {
 	@RequestMapping(value = "/deleteFromCart", method = RequestMethod.POST)
 	public ModelAndView deleteFromCart(@RequestParam int id) {
 		ModelAndView mv = new ModelAndView("redirect:/mycart");
-		String loggedInUser = (String) httpSession.getAttribute("loggedInUser");
+		String loggedInUserID = (String) httpSession.getAttribute("loggedInUserID");
 		cartDAO.delete(id);
-		List<Cart> cartList = cartDAO.list(loggedInUser);
+		List<Cart> cartList = cartDAO.list(loggedInUserID);
 		int cartSize = cartList.size();
 		httpSession.setAttribute("cartSize", cartSize);
 		mv.addObject("cartList", cartList);
@@ -111,15 +112,15 @@ public class CartController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/checkout")
+	@RequestMapping(value = "/checkout", method = RequestMethod.POST)
 	public ModelAndView checkout() {
 		ModelAndView mv = new ModelAndView("home");
 		mv.addObject("checkoutClicked", true);
-		String loggedInUser = (String) httpSession.getAttribute("loggedInUser");
-		List<Cart> cartReview = cartDAO.list(loggedInUser);
-		httpSession.setAttribute("cartReview", cartReview);
-		int cartsum = cart.getPrice();
-		for (Cart a : cartReview) {
+		String loggedInUserID = (String) httpSession.getAttribute("loggedInUserID");
+		List<Cart> cartList = cartDAO.list(loggedInUserID);
+		httpSession.setAttribute("cartList", cartList);
+		int cartsum = 0;
+		for (Cart a:cartList) {
 			cartsum = cartsum + a.getPrice();
 		}
 		httpSession.setAttribute("cartsum", cartsum);
@@ -127,4 +128,25 @@ public class CartController {
 		httpSession.setAttribute("total", total);
 		return mv;
 	}
+	@PostMapping("/placeOrder")
+		public ModelAndView placeOrder(@RequestParam("emailID") String emailID){
+		ModelAndView mv = new ModelAndView("home");
+		String loggedInUserID = (String) httpSession.getAttribute("loggedInUserID");
+		if(cartDAO.deleteCart("loggedInUserID")==true)
+		{
+			List<Cart> cartList = cartDAO.list(loggedInUserID);
+			httpSession.setAttribute("cartList", cartList);
+		for (Cart a:cartList) {
+				cartDAO.delete(a.getId());
+		}
+			mv.setViewName("home");
+			mv.addObject("orderPlacedMessage", "Your Order Placed Successfully...Continue Shopping");
+		}
+		else
+		{
+			mv.addObject("orderPlacedMessage", "Sorry, Your order is not Successfully Placed.. Try again after some time !!!");
+		}
+		return mv;
+	}
+
 }

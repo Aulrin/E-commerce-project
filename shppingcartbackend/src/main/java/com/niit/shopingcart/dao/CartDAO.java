@@ -19,6 +19,7 @@ public interface CartDAO {
 	
 	public List<Cart> list(String emailID);
 	
+	public boolean deleteCart(String emailID);
 
 
 }
