@@ -18,27 +18,28 @@
 
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
-		<img src="resources/images/logo.png" alt="website logo"
-			style="width: 40px;"><a href="" style="color: White;">Cart
-			360</a> <br>
 
 		<ul class="nav navbar-nav navbar-left">
-			<li><a href="login"><span class="glyphicon glyphicon-log-in"></span>
-					Login</a></li>
-			<c:if test="${isLoggedIn==true}">
-				<li><a href="logout"><span
-						class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-			</c:if>
+			<li><img src="resources/images/logo.png" alt="website logo"
+				style="width: 40px;"><a href="" style="color: White;">
+				<font face="georgia"> Cart 360</font> </a></li>
+			
 		</ul>
 
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="registration"><span
-					class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-			<c:if test="${isLoggedIn==true}">
+		<c:choose><c:when test="${isLoggedIn==true}">
 				<li><a href="mycart"><span
 						class="glyphicon glyphicon-shopping-cart"></span>
 						MyCart(${cartSize})</a></li>
-			</c:if>
+
+				<li><a href="logout"><span
+						class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+						</c:when><c:otherwise>
+			<li><a href="registration"><span
+					class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li><a href="login"><span class="glyphicon glyphicon-log-in"></span>
+					Login</a></li></c:otherwise></c:choose>
+			
 		</ul>
 
 

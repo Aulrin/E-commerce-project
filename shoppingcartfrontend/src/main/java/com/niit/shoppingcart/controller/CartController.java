@@ -59,7 +59,9 @@ public class CartController {
 		cart.setQuantity(1);
 		cart.setId(); // to set a random number.
 		if (cartDAO.save(cart)) {
-			mv.addObject("successMessage", "The product add to cart successfully");
+			mv.addObject("successMessage", "      Product added to cart");
+			List<Cart> cartList= cartDAO.list(loggedInUserID);
+			mv.addObject("cartSize", cartList.size());
 		} else {
 			mv.addObject("errorMessage", "Could not add the product to cart..please try after some time");
 		}
@@ -81,25 +83,45 @@ public class CartController {
 		}
 		else
 		{
-			List<Cart> carts= cartDAO.list(loggedInUserID);
-			if (carts==null)
+			List<Cart> cartList= cartDAO.list(loggedInUserID);
+			if (cartList==null)
 			{
 				mv.addObject("noItems", "Your cart is empty");
 			}
 			else
 			{
 				mv.addObject("cartDetails", true);
-				mv.addObject("cartList", carts);
-				mv.addObject("cartSize", carts.size());
-			
-				log.debug("No of products in cart"+ carts.size());
+				mv.addObject("cartList",cartList);
+				mv.addObject("cartSize", cartList.size());
+				int cartsum = 0;
+				for (Cart a:cartList) {
+					cartsum = cartsum + a.getPrice();
+				}
+				httpSession.setAttribute("cartsum", cartsum);
+
+				log.debug("No of products in cart"+ cartList.size());
 				log.debug("Ending of the method getMyCartDetails");
 			}
 		}return mv;
 	}
-
-	@RequestMapping(value = "/deleteFromCart", method = RequestMethod.POST)
+	
+	@PostMapping("/editcartqty/{id}")
+	public ModelAndView editProductQuantity(@PathVariable("id") int id)
+	{
+		log.debug("Starting of the method editProductQuantity");
+		ModelAndView mv= new ModelAndView("redirect:/mycart");
+		cart=cartDAO.get(id);
+		cart.setQuantity((cart.getQuantity()+1));
+		cart.setPrice(cart.getPrice()*cart.getQuantity());
+		cartDAO.update(cart);
+		
+		log.debug("Ending of the method editProductQuantity");
+		return mv;
+	}
+	
+	@PostMapping("/deleteFromCart")
 	public ModelAndView deleteFromCart(@RequestParam int id) {
+		log.debug("Starting of the method removeProductFromCart");
 		ModelAndView mv = new ModelAndView("redirect:/mycart");
 		String loggedInUserID = (String) httpSession.getAttribute("loggedInUserID");
 		cartDAO.delete(id);
@@ -107,12 +129,12 @@ public class CartController {
 		int cartSize = cartList.size();
 		httpSession.setAttribute("cartSize", cartSize);
 		mv.addObject("cartList", cartList);
-		mv.addObject("deleteCartSuccess", true);
-
+/*		mv.addObject("deleteCartSuccess", true);
+*/
 		return mv;
 	}
 
-	@RequestMapping(value = "/checkout", method = RequestMethod.POST)
+	@PostMapping("/checkout")
 	public ModelAndView checkout() {
 		ModelAndView mv = new ModelAndView("home");
 		mv.addObject("checkoutClicked", true);
@@ -139,8 +161,8 @@ public class CartController {
 		for (Cart a:cartList) {
 				cartDAO.delete(a.getId());
 		}
-			mv.setViewName("home");
 			mv.addObject("orderPlacedMessage", "Your Order Placed Successfully...Continue Shopping");
+			mv.addObject("clickedPlaceOrder",true);
 		}
 		else
 		{

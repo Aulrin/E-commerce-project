@@ -8,6 +8,42 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function matchpass(){
+	var firstpassword=document.registration.psw.value;
+	var secondpassword=document.registration.psw_repeat.value;
+	
+	var x=document.registration.email.value;
+	var atposition=x.indexOf("@");  
+	var dotposition=x.lastIndexOf(".");
+	
+	var letters = /^[a-zA-Z]+$/;
+	var word=document.registration.name.value;
+	
+	var phoneno = /^\d{10}$/;
+	var no=document.registration.mob.value;
+	
+    if(!word.match(letters)){
+    alert('Please input Alphabet only');
+    return false;
+    }
+    
+    if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
+	  alert("Please enter a valid e-mail address \n atpostion:"+atposition+"\n dotposition:"+dotposition);  
+	  return false;  
+	  }  
+	
+    if(firstpassword!=secondpassword){
+	alert("Password must be same!");
+	return false;
+	}
+    
+    if(!no.match(phoneno)){
+    alert('Please Enter only 10 digit moblie number');
+    return false;
+    }
+	}
+   </script>
 <style>
 body {
 	font-family: Arial, Helvetica, sans-serif;
@@ -16,7 +52,7 @@ body {
 	box-sizing: border-box
 }
 /* Full-width input fields */
-input[type=text], input[type=password] {
+input[type=text], input[type=password] ,input[type=email]{
 	width: 100%;
 	padding: 15px;
 	margin: 5px 0 22px 0;
@@ -24,7 +60,7 @@ input[type=text], input[type=password] {
 	border: none;
 	background: #f1f1f1;
 }
-input[type=text]:focus, input[type=password]:focus {
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 	background-color: #ddd;
 	outline: none;
 }
@@ -76,7 +112,7 @@ button:hover {
 </head>
 
 <body>
-	<form action="registration" method="post" style="border: 1px solid #ccc">
+	<form name="registration" action="registration" method="post" style="border: 1px solid #ccc" onsubmit="return matchpass()">
 		<div class="container">
 			<h1>Sign Up</h1>
 			<hr>
@@ -90,15 +126,13 @@ button:hover {
 			<label for="psw"><b>Password</b></label> 
 			<input type="password" placeholder="Enter Password" name="psw" required> 
 			
-			<label for="psw-repeat"><b>Repeat Password</b></label> 
-			<input type="password" placeholder="Repeat Password" name="psw-repeat"required> 
+			<label for="psw_repeat"><b>Repeat Password</b></label> 
+			<input type="password" placeholder="Repeat Password" name="psw_repeat"required> 
 			
 			<label for="mob"><b>Mobile number</b></label> 
-			<input type="text" placeholder="Enter mobile no" name="mob" required>
-			
+			<input type="text" name="mob" placeholder="Enter mobile no" maxlength="10" required>
 			<div class="clearfix">
 				<button type="submit" class="signupbtn">Sign Up</button>
-				<button type="button" class="cancelbtn">Cancel</button>
 			</div>
 			
 			

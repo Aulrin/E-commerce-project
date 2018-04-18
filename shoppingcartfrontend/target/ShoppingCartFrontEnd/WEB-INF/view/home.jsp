@@ -10,41 +10,51 @@
 <title>Home</title>
 </head>
 <body>
-	<center>
-		<h2>Welcome to shopping cart</h2>
-		${logoutMessage}
-	</center>
-
-	<br>
-
 	<jsp:include page="loginheader.jsp"></jsp:include>
-
 	<jsp:include page="product_menu.jsp"></jsp:include>
 
-	<c:if test="${isUserSelectedProduct==true}">
-
-		<jsp:include page="selected_product.jsp"></jsp:include>
-	</c:if>
-
-	<c:if test="${isAdmin==true}">
-		<jsp:include page="admin/adminhome.jsp"></jsp:include>
-	</c:if>
-
-	<c:if test="${isUserClickedMyCart==true}">
-		<jsp:include page="cart.jsp"></jsp:include>
-	</c:if>
-
-	 ${errorMessage} ${successMessage}
-
-
-
-	<c:if test="${isUserClickedLogin==true}">
-		<jsp:include page="login.jsp"></jsp:include>
-	</c:if>
-	<c:if test="${isUserClickedRegister==true}">
-		<jsp:include page="registration.jsp"></jsp:include>
-	</c:if>
-			<jsp:include page="displayallproduct.jsp"></jsp:include>
+<%-- 	${errorMessage} ${successMessage} --%>
+	<c:choose>
 	
+		<c:when test="${loginerror==true}">
+		<jsp:include page="login.jsp"></jsp:include>
+		</c:when>	
+	
+		<c:when test="${isAdmin==true}">
+		<jsp:include page="admin/adminhome.jsp"></jsp:include>
+		</c:when>
+
+		<c:when test="${isUserClickedLogin==true}">
+		<jsp:include page="login.jsp"></jsp:include>
+		</c:when>
+	
+		<c:when test="${isUserClickedRegister==true}">
+		<jsp:include page="registration.jsp"></jsp:include>
+		</c:when>
+	
+		<c:when test="${isUserSelectedProduct==true}">
+		<jsp:include page="selected_product.jsp"></jsp:include>
+		</c:when>
+		
+		<c:when test="${isUserClickedMyCart==true}">
+		<jsp:include page="cart.jsp"></jsp:include>
+		</c:when>
+	
+		<c:when test="${deleteCartSuccess==true}">
+		<jsp:include page="cart.jsp"></jsp:include>
+		</c:when>
+	
+		<c:when test="${checkoutClicked==true}">
+		<jsp:include page="checkout.jsp"></jsp:include>
+		</c:when>
+
+
+			<c:otherwise>
+				<jsp:include page="carousel.jsp"></jsp:include>
+				<jsp:include page="displayallproduct.jsp"></jsp:include>
+			</c:otherwise>
+	</c:choose>
+
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

@@ -46,7 +46,8 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("home");
 		user = userDAO.validate(username, password);
 		if (user == null) {
-			mv.addObject("errorMessage", "Invalid credentials, pl try agin.");
+			mv.addObject("errorMessage", "Invalid user, Pls try again.");
+			mv.addObject("loginerror", true);
 		} else {
 			// valid credentials.
 			httpSession.setAttribute("welcomeMessage", "Welcome Mr./Ms " + user.getName());
@@ -66,10 +67,10 @@ public class UserController {
 	}
 
 	@PostMapping("registration")
-	public ModelAndView registration(@RequestParam("email") String mail, @RequestParam("psw") String password,
+	public ModelAndView registration(@RequestParam("email") String email, @RequestParam("psw") String password,
 			@RequestParam("mob") String mobile, @RequestParam("name") String name) {
 		ModelAndView mv = new ModelAndView("home");
-		user.setEmailID(mail);
+		user.setEmailID(email);
 		user.setMobile(mobile);
 		user.setName(name);
 		user.setPwd(password);

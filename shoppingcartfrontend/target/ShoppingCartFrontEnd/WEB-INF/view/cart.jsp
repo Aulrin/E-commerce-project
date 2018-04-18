@@ -5,15 +5,73 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<title>My Cart</title>
+
+<style>
+/* td {padding:5px;
+	width: 150px;
+	font-size: 15px;
+} */
+hr {
+height: 1px;
+background-color:black;
+border: 0 none;
+}
+input[type="text"] {
+border:0;
+background-color:ghostwhite;
+padding:5px;
+}
+th {
+font-family:calibri;
+text-align:center;
+font-size:20px;
+}
+</style>
 </head>
 <body>
-<a href="buy"> BUY</a>  <br>
-<c:forEach var="cart" items="${cartList}">
-<img alt="" src="resources/images/${cart.productID}.PNG">
-Name  : <input type="text" name="price" value="${cart.productName}"> <br>
-price : <input type="text" name="price" value="${cart.price}"> <br>
-quantity  : <input type="text" name="price" value="${cart.quantity}"> <br>
-</c:forEach>
+<p style="margin:0px 50px;font-size:30px;font-family:tahoma;">Items in Your Cart</p><hr>
+<form action="checkout" method="post">
+  <table style="text-align:center;" class="table-striped">
+    <thead>
+      <tr>
+        <th style="width:10%;">Cart id</th>
+        <th style="text-align:center;">Product</th>
+        <th style="width:30%;">Product Name</th>
+        <th>Quantity</th>
+        <th style="width:10%;">Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    
+    <tbody>
+    <c:forEach var="cart" items="${cartList}">
+      <tr>
+     	 <td>${cart.id}</td>
+     	 <td style="width:15%;"><img style="height:130px;width:220px;padding:20px;" alt="${cart.productName}" src="resources/images/${cart.productID}.PNG"></td>
+     	 <td style="padding:10px 20px;">${cart.productName}</td>
+      	 <td style="width:15%;">
+			<input type="text" style="text-align:center;width:20%;" name="cartquantity" value="${cart.quantity}">
+			<a href="editcartqty/${cart.id}"><button class="btn btn-primary">+</button></a>
+		</td>
+		<td>${cart.price}</td>
+		<td><a href="deleteFromCart?id=${cart.id}"><button style="width:50%;" class="btn btn-danger"> Delete </button></a></td>
+		
+      </tr>
+    </c:forEach>
+    </tbody>
+    
+  </table>
+  <hr><br>
+  
+  <p style="text-align:right;margin:0px 80px;">
+					<a href="checkout"><button style="width:10%;"> Check Out </button></a></p>
+
+</form> ${cartsum}
 </body>
 </html>

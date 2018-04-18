@@ -26,7 +26,7 @@ public class CartDAOImpl implements CartDAO {
 		// store in the database.
 		try {
 			cart.setId();
-			sessionFactory.getCurrentSession().save(cart);
+			sessionFactory.getCurrentSession().saveOrUpdate(cart);
 			return true;
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
