@@ -34,7 +34,7 @@ hr.message-inner-separator
                 <p>
                     ${orderPlacedMessage}</p>
                      <div class="container">
-                    <p style="text-align:right;margin:0px 80px;"><a href="">
+                    <p style="text-align:right;margin:0px 80px;"><a href="hom">
                     <button type="button">Continue Shopping</button>
                     </a></p></div>
             </div></div>

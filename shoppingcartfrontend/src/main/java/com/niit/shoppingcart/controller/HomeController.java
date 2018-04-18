@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.shopingcart.dao.CartDAO;
 import com.niit.shopingcart.dao.CategoryDAO;
 import com.niit.shopingcart.dao.ProductDAO;
+import com.niit.shopingcart.domain.Cart;
 import com.niit.shopingcart.domain.Category;
 import com.niit.shopingcart.domain.Product;
 
@@ -34,6 +36,9 @@ public class HomeController {
 	@Autowired
 	private ProductDAO productDAO;
 
+	@Autowired
+	private CartDAO cartDAO;
+	
 	@GetMapping("/")
 	public ModelAndView home(HttpServletRequest request) {
 
@@ -42,7 +47,10 @@ public class HomeController {
 		// Autowire CategoryDAO and category
 		List<Category> categories = categoryDAO.list();
 		List<Product> products = productDAO.list();
-		// add the data to mv
+		String loggedInUserID = (String) httpSession.getAttribute("loggedInUserID");
+		List<Cart> cartList = cartDAO.list(loggedInUserID);
+		int cartSize = cartList.size();
+		httpSession.setAttribute("cartSize", cartSize);
 		httpSession.setAttribute("categories", categories);
 		httpSession.setAttribute("products",products);
 		return mv;
@@ -65,6 +73,7 @@ public class HomeController {
 		httpSession.setAttribute("categories", categories);
 		httpSession.setAttribute("products",products);
 		
+		httpSession.removeAttribute("cartSize");
 		httpSession.removeAttribute("isAdmin");
 		httpSession.removeAttribute("isLoggedIn");
 		httpSession.removeAttribute("welcomeMessage");
@@ -79,4 +88,31 @@ public class HomeController {
 		mv.addObject("isUserClickedRegister", true);
 		return mv;
 	}
+	
+	@RequestMapping("/aboutus")
+	public ModelAndView aboutus() {
+		ModelAndView mv = new ModelAndView("home");
+		mv.addObject("isUserClickedAboutus", true);
+		return mv;
+	}
+	@RequestMapping("/contact")
+	public ModelAndView contact() {
+		ModelAndView mv = new ModelAndView("home");
+		mv.addObject("isUserClickedContact", true);
+		return mv;
+	}
+	@RequestMapping("/hom")
+	public ModelAndView hom() {
+		ModelAndView mv = new ModelAndView("home");
+		List<Category> categories = categoryDAO.list();
+		List<Product> products = productDAO.list();
+		mv.addObject("categories", categories);
+		mv.addObject("products",products);
+		String loggedInUserID = (String) httpSession.getAttribute("loggedInUserID");
+		List<Cart> cartList = cartDAO.list(loggedInUserID);
+		int cartSize = cartList.size();
+		httpSession.setAttribute("cartSize", cartSize);
+		return mv;
+	}
+
 }

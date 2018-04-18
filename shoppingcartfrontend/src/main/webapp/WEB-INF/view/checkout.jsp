@@ -20,6 +20,10 @@ function CODCheck()
     {
         document.getElementById('DebitCardOption').style.display = 'none';
     } 
+    else if( document.getElementById('DebitCardOption').checked)
+    {
+    	 document.getElementById('CashOnDelivery').style.display = 'none';
+    }
     else
     {
     	document.getElementById('DebitCardOption').style.display = 'block';
@@ -77,7 +81,7 @@ function CODCheck()
                                 </div>
                             </div>
                              <div class="form-group">
-                                <div class="col-md-12"><strong>Re-Enter EmailId:</strong></div>
+                                <div class="col-md-12"><strong>EmailId:</strong></div>
                                 <div class="col-md-12">
                                     <input type="text" name="emailID" class="form-control" />
                                 </div>

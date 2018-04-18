@@ -24,7 +24,7 @@ function matchpass(){
 	var no=document.registration.mob.value;
 	
     if(!word.match(letters)){
-    alert('Please input Alphabet only');
+    alert('Name should be in Alphabet only');
     return false;
     }
     

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,13 +20,25 @@
 	<div class="container-fluid">
 
 		<ul class="nav navbar-nav navbar-left">
-			<li><img src="resources/images/logo.png" alt="website logo"
-				style="width: 40px;"><a href="" style="color: White;">
-				<font face="georgia"> Cart 360</font> </a></li>
+			<li>
+				<a class="navbar-brand" href="hom" style="padding: 10px;font-size: 30px;width: 100px;text-align: center;text-decoration: none;margin: 5px 2px;">
+				Cart 360</a></li>
+				<c:forEach items="${categories}" var="category">
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">${category.name}<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+        						<c:forEach items="${category.products}" var="product">
+        
+          <li><a href="product/get/${product.id}">${product.name}</a></li>
+          </c:forEach>
+        </ul>
+      </li>
+					</c:forEach>
 			
 		</ul>
 
 		<ul class="nav navbar-nav navbar-right">
+		<li><a href="aboutus">About Us</a></li>
+		<li><a href="contact">Contact Us</a></li>
 		<c:choose><c:when test="${isLoggedIn==true}">
 				<li><a href="mycart"><span
 						class="glyphicon glyphicon-shopping-cart"></span>

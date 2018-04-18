@@ -61,7 +61,7 @@ public class CartController {
 		if (cartDAO.save(cart)) {
 			mv.addObject("successMessage", "      Product added to cart");
 			List<Cart> cartList= cartDAO.list(loggedInUserID);
-			mv.addObject("cartSize", cartList.size());
+			httpSession.setAttribute("cartSize", cartList.size());
 		} else {
 			mv.addObject("errorMessage", "Could not add the product to cart..please try after some time");
 		}
@@ -105,7 +105,7 @@ public class CartController {
 		}return mv;
 	}
 	
-	@PostMapping("/editcartqty/{id}")
+	@PostMapping("/editcartqtyp/{id}")
 	public ModelAndView editProductQuantity(@PathVariable("id") int id)
 	{
 		log.debug("Starting of the method editProductQuantity");
@@ -119,6 +119,19 @@ public class CartController {
 		return mv;
 	}
 	
+	@PostMapping("/editcartqtym/{id}")
+	public ModelAndView editProductQuantitym(@PathVariable("id") int id)
+	{
+		log.debug("Starting of the method editProductQuantity");
+		ModelAndView mv= new ModelAndView("redirect:/mycart");
+		cart=cartDAO.get(id);
+		cart.setQuantity((cart.getQuantity()-1));
+		cart.setPrice(cart.getPrice()*cart.getQuantity());
+		cartDAO.update(cart);
+		
+		log.debug("Ending of the method editProductQuantity");
+		return mv;
+	}
 	@PostMapping("/deleteFromCart")
 	public ModelAndView deleteFromCart(@RequestParam int id) {
 		log.debug("Starting of the method removeProductFromCart");
@@ -129,8 +142,7 @@ public class CartController {
 		int cartSize = cartList.size();
 		httpSession.setAttribute("cartSize", cartSize);
 		mv.addObject("cartList", cartList);
-/*		mv.addObject("deleteCartSuccess", true);
-*/
+
 		return mv;
 	}
 
@@ -161,6 +173,8 @@ public class CartController {
 		for (Cart a:cartList) {
 				cartDAO.delete(a.getId());
 		}
+			int cartSize = cartList.size();
+			httpSession.setAttribute("cartSize", cartSize);
 			mv.addObject("orderPlacedMessage", "Your Order Placed Successfully...Continue Shopping");
 			mv.addObject("clickedPlaceOrder",true);
 		}

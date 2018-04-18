@@ -55,10 +55,10 @@ public class UserController {
 			httpSession.setAttribute("isLoggedIn", true);
 			// fetch how amy products are added to the cart.
 			// this number add to httpSession.
-			List<Cart> carts = cartDAO.list(user.getEmailID());
-			int cartSize = carts.size();
+			List<Cart> cartList = cartDAO.list(user.getEmailID());
+			int cartSize = cartList.size();
 			httpSession.setAttribute("cartSize",cartSize);
-			httpSession.setAttribute("carts", carts);
+			httpSession.setAttribute("cartList", cartList);
 			if (user.getRole() == 'A') {
 				httpSession.setAttribute("isAdmin", true);
 			}
@@ -76,8 +76,7 @@ public class UserController {
 		user.setPwd(password);
 		System.out.println(user.getEmailID());
 		userDAO.save(user);
-		httpSession.setAttribute("success",
-				"Welcome " + user.getName() + " You have successfully created an account with us ");
+		mv.addObject("isclickedregister",true);
 		return mv;
 	}
 }

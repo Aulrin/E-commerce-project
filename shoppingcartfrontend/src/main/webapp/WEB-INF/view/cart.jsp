@@ -54,8 +54,9 @@ ${noItems}
      	 <td style="width:15%;"><img style="height:130px;width:220px;padding:20px;" alt="${cart.productName}" src="resources/images/${cart.productID}.PNG"></td>
      	 <td style="padding:10px 20px;">${cart.productName}</td>
       	 <td style="width:15%;">
+      	 <button class="btn btn-primary" formaction="editcartqtym/${cart.id}" method="post">-</button>
 			<input type="text" style="text-align:center;width:20%;" name="cartquantity" value="${cart.quantity}">
-			<button class="btn btn-primary" formaction="editcartqty/${cart.id}" method="post">+</button>
+			<button class="btn btn-primary" formaction="editcartqtyp/${cart.id}" method="post">+</button>
 		</td>
 		<td>${cart.price}</td>
 		<td><button style="width:50%;" class="btn btn-danger" formaction="deleteFromCart?id=${cart.id}" method="post"> Delete </button></td>
@@ -67,6 +68,9 @@ ${noItems}
   </table>
   <hr><br>
   <div class="container">
+  <a href="hom">
+  <span class="glyphicon glyphicon-arrow-left"></span>
+  Return Shopping</a>
   <p style="text-align:right;margin:0px 80px;"><font size="4" face="verdana"><b><i>Total : ${cartsum} </i></b></font></p></div><br>
   <p style="text-align:right;margin:0px 80px;">
 					<button style="width:10%;" formaction="checkout" method="post"> Check Out </button></p>

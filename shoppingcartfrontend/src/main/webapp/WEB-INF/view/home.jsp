@@ -11,18 +11,25 @@
 </head>
 <body>
 	<jsp:include page="loginheader.jsp"></jsp:include>
-	<jsp:include page="product_menu.jsp"></jsp:include>
-${successMessage} 
+<b><i>${successMessage} </i></b>
 	<c:choose>
 	
 		<c:when test="${loginerror==true}">
 		<jsp:include page="login.jsp"></jsp:include>
+		</c:when>
+		
+		<c:when test="${isUserClickedAboutus==true}">
+		<jsp:include page="aboutus.jsp"></jsp:include>
+		</c:when>
+		
+		<c:when test="${isUserClickedContact==true}">
+		<jsp:include page="contact.jsp"></jsp:include>
 		</c:when>	
 	
 		<c:when test="${isAdmin==true}">
 		<jsp:include page="admin/adminhome.jsp"></jsp:include>
 		</c:when>
-
+		
 		<c:when test="${isUserClickedLogin==true}">
 		<jsp:include page="login.jsp"></jsp:include>
 		</c:when>
@@ -31,15 +38,15 @@ ${successMessage}
 		<jsp:include page="registration.jsp"></jsp:include>
 		</c:when>
 	
+		<c:when test="${isclickedregister==true}">
+		<jsp:include page="login.jsp"></jsp:include>
+		</c:when>
+	
 		<c:when test="${isUserSelectedProduct==true}">
 		<jsp:include page="selected_product.jsp"></jsp:include>
 		</c:when>
 		
 		<c:when test="${isUserClickedMyCart==true}">
-		<jsp:include page="cart.jsp"></jsp:include>
-		</c:when>
-	
-		<c:when test="${deleteCartSuccess==true}">
 		<jsp:include page="cart.jsp"></jsp:include>
 		</c:when>
 	
