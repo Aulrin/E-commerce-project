@@ -23,7 +23,7 @@ import com.niit.shopingcart.domain.Cart;
 import com.niit.shopingcart.domain.Category;
 import com.niit.shopingcart.domain.Product;
 
-@Controller
+@Controller//Request handler
 public class CartController {
 	Logger log = LoggerFactory.getLogger(CartController.class);
 
@@ -125,7 +125,7 @@ public class CartController {
 		log.debug("Starting of the method editProductQuantity");
 		ModelAndView mv= new ModelAndView("redirect:/mycart");
 		cart=cartDAO.get(id);
-		cart.setQuantity((cart.getQuantity()-1));
+		cart.setQuantity(cart.getQuantity()-1);
 		cart.setPrice(cart.getPrice()*cart.getQuantity());
 		cartDAO.update(cart);
 		
@@ -175,7 +175,7 @@ public class CartController {
 		}
 			int cartSize = cartList.size();
 			httpSession.setAttribute("cartSize", cartSize);
-			mv.addObject("orderPlacedMessage", "Your Order Placed Successfully...Continue Shopping");
+			mv.addObject("orderPlacedMessage", "Your Order Placed Successfully \n And your order is in shipping process...Continue Shopping");
 			mv.addObject("clickedPlaceOrder",true);
 		}
 		else

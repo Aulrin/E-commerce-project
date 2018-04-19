@@ -18,7 +18,7 @@ import com.niit.shopingcart.domain.Category;
 import com.niit.shopingcart.domain.Product;
 import com.niit.shopingcart.domain.Supplier;
 
-@Controller
+@Controller//Request handler
 public class AdminController {
 	private static Logger log = LoggerFactory.getLogger(AdminController.class);
 	@Autowired

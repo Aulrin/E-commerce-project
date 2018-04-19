@@ -82,11 +82,13 @@
 
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" href=""><font color="white">Cart
-					360</font></a>
+			<a class="navbar-brand" href="hom"
+				style="padding: 10px; font-size: 30px; width: 100px; text-align: center; text-decoration: none; margin: 5px 2px;">
+				Cart 360</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li><font color="white"><div id="footer">&copy; All rights reserved</div></font></li>
+			<li><font color="white"><div id="footer">&copy; All
+						rights reserved</div></font></li>
 
 
 		</ul>

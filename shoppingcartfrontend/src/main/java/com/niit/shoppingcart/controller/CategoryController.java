@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.niit.shopingcart.dao.CategoryDAO;
 import com.niit.shopingcart.domain.Category;
 
-@Controller
+@Controller//Request handler
 public class CategoryController {
 
 	// we need to call CategoryDAO methods

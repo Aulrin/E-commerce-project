@@ -11,7 +11,8 @@
 </head>
 <body>
 	<jsp:include page="loginheader.jsp"></jsp:include>
-<b><i>${successMessage} </i></b>
+${successMessage} ${errorMessage}
+
 	<c:choose>
 	
 		<c:when test="${loginerror==true}">

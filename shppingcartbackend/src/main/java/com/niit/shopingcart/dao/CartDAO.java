@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.niit.shopingcart.domain.Cart;
 
-
+//DAO-data acess object
 public interface CartDAO {
 
 	public boolean save(Cart cart);

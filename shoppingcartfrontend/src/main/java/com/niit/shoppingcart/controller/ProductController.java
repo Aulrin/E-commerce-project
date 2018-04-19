@@ -24,7 +24,7 @@ import com.niit.shopingcart.dao.ProductDAO;
 import com.niit.shopingcart.dao.SupplierDAO;
 import com.niit.shopingcart.domain.Product;
 import com.niit.util.FileUtil;
-@Controller
+@Controller//Request handler
 public class ProductController {
 
 	

@@ -16,7 +16,7 @@ import com.niit.shopingcart.dao.UserDAO;
 import com.niit.shopingcart.domain.Cart;
 import com.niit.shopingcart.domain.User;
 
-@Controller
+@Controller//Request handler
 public class UserController {
 
 	@Autowired
@@ -35,9 +35,6 @@ public class UserController {
 	HttpSession httpSession;
 
 	// will send user id and password from jsp to controller
-	// it should validate the credentials
-	// it should return username ---- valid credentials
-	// it should return error message ----invalid credentials
 
 	@PostMapping("validate")
 	public ModelAndView validate(@RequestParam("uname") String username, @RequestParam("psw") String password)

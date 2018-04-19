@@ -68,6 +68,19 @@ input[type=submit]:hover {
     }
 }
 </style>
+<script type="text/javascript">
+function pass(){
+	
+	var x=document.contact.email.value;
+	var atposition=x.indexOf("@");  
+	var dotposition=x.lastIndexOf(".");
+    
+    if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
+	  alert("Please enter a valid e-mail address \n atpostion:"+atposition+"\n dotposition:"+dotposition);  
+	  return false;  
+	  }
+}
+</script>
 </head>
 <body>
 <div class="container">
@@ -77,10 +90,11 @@ input[type=submit]:hover {
   <div style="text-align:center">
     <h2>Contact Us</h2>
   </div>
+  <form onclick="pass()" name="contact">
         <label for="fname">First Name</label>
         <input type="text" id="fname" name="firstname" placeholder="Your name..">
         <label for="femail">Email</label>
-        <input type="text" id="email" name="firstname" placeholder="Your email..">
+        <input type="text" id="email" name="email" placeholder="Your email..">
         <label for="country">State</label>
         <select id="country" name="country">
           <option value="tamilnadu">Tamil nadu</option>
@@ -93,7 +107,7 @@ input[type=submit]:hover {
 		<br><center><a href="hom">
 		<button type="button" class="btn btn-primary">
  		 Submit
-		</button></a></center>
+		</button></a></center></form>
    </div></div></div>
 
 

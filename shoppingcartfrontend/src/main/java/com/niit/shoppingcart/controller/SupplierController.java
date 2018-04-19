@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.niit.shopingcart.dao.SupplierDAO;
 import com.niit.shopingcart.domain.Supplier;
 
-@Controller
+@Controller//Request handler
 public class SupplierController {
 	
 	@Autowired

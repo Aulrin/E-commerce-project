@@ -18,7 +18,7 @@ import com.niit.shopingcart.domain.Cart;
 import com.niit.shopingcart.domain.Category;
 import com.niit.shopingcart.domain.Product;
 
-@Controller
+@Controller//Request handler
 public class HomeController {
 
 	@Autowired
