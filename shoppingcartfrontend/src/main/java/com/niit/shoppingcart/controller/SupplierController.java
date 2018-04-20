@@ -28,17 +28,6 @@ public class SupplierController {
 	@Autowired
 	HttpSession httpSession;
 
-
-	/*@RequestMapping(name = "/getSupplier/", method = RequestMethod.GET)
-	public ModelAndView getSupplier(@RequestParam String id) {
-		// based on id, fetch the details from categoryDAO
-		supplier = supplierDAO.get(id);
-		// navigate to home page
-		ModelAndView mv = new ModelAndView("home");
-		mv.addObject("supplier", supplier);
-		return mv;
-	}*/
-
 	@PostMapping("/supplier/save/")
 
 	public ModelAndView saveSupplier(@RequestParam("id") String id,
@@ -54,6 +43,7 @@ System.out.println("saveSupplier method is calling");
 		} else {
 			mv.addObject("supplierErrorMessage", "Coulc not able to create supplier.  please contact admin");
 		}
+		httpSession.removeAttribute("selectedSupplier");
 		return mv;
 
 	}
@@ -72,6 +62,7 @@ System.out.println("saveSupplier method is calling");
 			mv.addObject("errorMessage", "Could not update the supplier.");
 
 		}
+		httpSession.removeAttribute("selectedSupplier");
 		return mv;
 
 	}

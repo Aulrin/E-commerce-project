@@ -36,6 +36,7 @@
 							<td>${selectedProduct.description}</td>
 
 						</tr>
+						
 						<tr>
 						<td></td>
 							<td><a href="cart/add/${selectedProduct.id}"><button>Add to Cart</button></a></td></tr>

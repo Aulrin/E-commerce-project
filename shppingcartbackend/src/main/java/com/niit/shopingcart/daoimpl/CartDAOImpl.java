@@ -91,7 +91,6 @@ public class CartDAOImpl implements CartDAO {
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			return false;
-		}
-	}
-
+		}}
+		
 }

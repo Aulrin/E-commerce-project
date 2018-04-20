@@ -68,10 +68,8 @@ public class ProductController {
 			@RequestParam("categoryID") String categoryID,
 			@RequestParam("supplierID") String supplierID,
 			@RequestParam("file") MultipartFile file,
-			HttpServletRequest req
-			
-			) {
-
+			HttpServletRequest req)
+	{
 		ModelAndView mv = new ModelAndView("redirect:/manageproducts");
 		product.setId(id);
 		product.setName(name);
@@ -94,25 +92,48 @@ public class ProductController {
 		} else {
 			mv.addObject("productErrorMessage", "Could not able to create product.  please contact admin");
 		}
+		httpSession.removeAttribute("selectedProduct");
 		return mv;
 	}
 
-	@PutMapping("/product/update/")
-	public ModelAndView updateProduct(@ModelAttribute Product product) {
-		// navigate to home page
-		ModelAndView mv = new ModelAndView("home");
-
-		// call save method of productDAO
-		if (productDAO.update(product) == true) {
-			// add success message
-			mv.addObject("successMessage", "The product updated successfully");
-		} else {
-			// add failure message
-			mv.addObject("errorMessage", "Could not update the product.");
+	@PostMapping("/product/update")
+	public ModelAndView update(@RequestParam("id") String id, @RequestParam("name") String name, 
+			@RequestParam("description") String description, @RequestParam("price") String price,
+			@RequestParam("categoryID") String categoryID, @RequestParam("supplierID") String supplierID,
+			@RequestParam("file") MultipartFile file,
+			HttpServletRequest req)
+	{
+		log.debug("update product clicked");
+		ModelAndView mv = new ModelAndView("redirect:/manageproducts");
+		product.setId(id);
+		product.setName(name);
+		product.setDescription(description);
+		product.setPrice(Integer.parseInt(price));
+		product.setCategoryId(categoryID);
+		product.setSupplierId(supplierID);
+		if(productDAO.update(product)==true)
+		{
+			log.debug("product updated successfully");
+			mv.addObject("ProductupdateMessage", "Product updated successfully...");
+			if(fileUtil.fileCopyNIO(file, id +".PNG",req))
+			{
+				mv.addObject("imageUploadMessage", "product image uploaded successfully");
+				
+			}
+			else
+			{
+				mv.addObject("imageUploadMessage", "product image uploading problem");
+			}
+		}
+		else 
+		{
+			log.debug("error occured in updating product");
+			mv.addObject("ProductupdateMessage", "Product could not updated...");
+			httpSession.removeAttribute("selectedProduct");
+			return mv;
 		}
 		return mv;
 	}
-
 	@GetMapping("/product/delete")
 	public ModelAndView deleteProduct(@RequestParam String id) {
 		System.out.println("going to delete product : " + id);

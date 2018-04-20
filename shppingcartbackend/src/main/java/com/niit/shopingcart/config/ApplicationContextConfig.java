@@ -41,7 +41,6 @@ public class ApplicationContextConfig {
 		Properties properties = new Properties();
 		
 		properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-		properties.put("hibernate.show_sql", "true");
 		return properties;
 	}
 

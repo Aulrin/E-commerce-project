@@ -25,7 +25,7 @@ public class ProductDAOImpl implements ProductDAO {
 	public boolean save(Product product) {
 		// store in the database.
 		try {
-			sessionFactory.getCurrentSession().save(product);
+			sessionFactory.getCurrentSession().saveOrUpdate(product);
 			return true;
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block

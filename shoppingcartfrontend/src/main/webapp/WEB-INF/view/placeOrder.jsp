@@ -28,7 +28,7 @@ hr.message-inner-separator
 </head>
 <body>
  <div class="container">
-            <div class="alert alert-success">
+            <!-- <div class="alert alert-success"> --><div class="alert alert-danger">
               <span class="glyphicon glyphicon-ok"></span> <strong>Success Message</strong>
                 <hr class="message-inner-separator">
                 <p>

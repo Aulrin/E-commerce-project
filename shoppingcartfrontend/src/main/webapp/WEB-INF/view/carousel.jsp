@@ -23,7 +23,7 @@
     <div class="carousel-inner">
 
       <div class="item active">
-        <img src="resources/images/apple.jpg" alt="Apple" style="height:720px;width:1300px;">
+        <img src="resources/images/apple.jpg" alt="Apple" style="height:500px;width:1300px;">
         <div class="carousel-caption">
           <h3>Apple</h3>
           <p>Think Different.</p>
@@ -31,7 +31,7 @@
       </div>
 
       <div class="item">
-        <img src="resources/images/watch.jpg" alt="Rolex" style="height:720px;width:1300px;">
+        <img src="resources/images/watch.jpg" alt="Rolex" style="height:500px;width:1300px;">
         <div class="carousel-caption">
           <h3>Rolex</h3>
           <p>A Crown for every achievement.</p>
@@ -39,7 +39,7 @@
       </div>
     
       <div class="item">
-        <img src="resources/images/laptop.jpg" alt="Dell" style="height:720px;width:1300px;">
+        <img src="resources/images/laptop.jpg" alt="Dell" style="height:500px;width:1300px;">
         <div class="carousel-caption">
           <h3>Dell</h3>
           <p>Yours is here</p>

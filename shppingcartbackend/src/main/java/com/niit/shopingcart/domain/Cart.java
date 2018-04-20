@@ -2,7 +2,6 @@ package com.niit.shopingcart.domain;
 
 import java.util.Random;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -19,8 +18,18 @@ public class Cart {
 	private int price;
 	private int quantity;
 	private String productID;
+	private int subtotal;
 	
 	
+	public int getSubtotal() {
+		return subtotal;
+	}
+	public void setSubtotal(int subtotal) {
+		this.subtotal = subtotal;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getProductID() {
 		return productID;
 	}
@@ -41,7 +50,7 @@ public class Cart {
 		return id;
 	}
 	public void setId() {
-		this.id = new Random().nextInt();
+		this.id = new Random().nextInt(200)+1;
 	}
 	public String getEmailID() {
 		return emailID;
@@ -67,4 +76,5 @@ public class Cart {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
 }
