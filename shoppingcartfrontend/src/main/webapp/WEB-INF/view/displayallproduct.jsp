@@ -11,17 +11,20 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!--  <style> 
-.col {
-    -webkit-column-count: 3; /* Chrome, Safari, Opera */
-    -moz-column-count: 3; /* Firefox */
-    column-count: 3;
-
-    -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
-    -moz-column-gap: 40px; /* Firefox */
-    column-gap: 40px;
-}
-</style> -->
+	<style>
+button {
+    background-color: #e7e7e7; color: black;
+    border: none;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50%;}
+ </style>
 </head>
 <body>
 
@@ -35,18 +38,17 @@
 
 					<div class="thumbnail">
 						<img src="resources/images/${product.id}.PNG" alt="product"
-							style="height: 170px; width: 170px; padding: 10px;">
-					</div>
-
+							style="height: 170px; width: 170px;">
 
 						<h4>${product.name}</h4>
-						<p><span>Rs. </span>${product.price}</p>
+  						<p>
+						<span>Rs. </span>${product.price}</p>
 						<p align="right">
 							<a href="product/get/${product.id}"><button>View</button></a>
 						</p>
 
 	
-				</div></div>
+				</div></div></div>
 			</div>
 		</c:forEach>
 	</div>

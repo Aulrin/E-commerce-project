@@ -5,9 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<style>
+body {background-color: ghostwhite;}
+</style>
+</head>
 </head>
 <body>
-<div class="container">
+<div class="container" style="background-color:ghostwhite">
 <h1 style="border-bottom: 1px solid #c5c5c5;"><center><font face="georgia">
 <b><i>About Us</i></b></font></center>
 </h1><br>

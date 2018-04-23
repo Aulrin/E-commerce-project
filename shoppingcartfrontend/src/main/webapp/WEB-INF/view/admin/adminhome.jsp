@@ -10,11 +10,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<h2>	<a href="managecategories"> Manage Categories</a>  
-	<a href="managesuppliers"> Manage Suppliers</a>
+<center>
+<h4>	<a href="managecategories"> Manage Categories</a> &emsp;&emsp;
+	<a href="managesuppliers"> Manage Suppliers</a>&emsp;&emsp;
 	<a href="manageproducts"> Manage Products</a>
-	</h2>
+	</h4></center>
 
 <br>
 	<c:if test="${isAdminClickedManageCategories==true }">

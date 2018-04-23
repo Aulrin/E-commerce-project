@@ -13,7 +13,30 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<style type="text/css">	
+.button {
+  display: inline-block;
+  padding: 5px 15px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
 </head>
 <body>
 	${productSuccessMessage} ${productErrorMessage} ${uploadMessage}
@@ -21,7 +44,7 @@
 	<div class="container">
 		<form action="product/save/" method="post"
 			enctype="multipart/form-data">
-			<table class="table table-bordered">
+			<table class="table table-bordered" style="background-color: ghostwhite;">
 				<tr>
 					<td>ID</td>
 					<td><input type="text" name='id' value="${selectedProduct.id}"></td>
@@ -69,7 +92,7 @@
 				</tr>
 			</table>
 			<div class="container">
-				<input type="submit" value='create product'>
+				<input type="submit" value='create product' class="button">
 			</div>
 		</form>
 	</div>
@@ -78,20 +101,21 @@
 	<!--  display all the categories -->
 	<div class="container">
 		<table class="table table-bordered">
-			<tr>
+			<tr style="background-color: black;color: white;">
 				<td>Product ID</td>
 				<td>Product Name</td>
 				<td>Product Description</td>
 				<td>Action</td>
 			</tr>
 			<c:forEach var="product" items="${products}">
-				<tr>
+				<tr style="background-color: ghostwhite;">
 					<td>${product.id}</td>
 					<td>${product.name}</td>
 					<td>${product.description}</td>
 					<td><a href="product/delete/?id=${product.id}"><button
-								type="button">Delete</button></a> <a
-						href="product/edit/?id=${product.id}"><button type="button">Edit</button></a></td>
+								type="button" class="button">Delete</button></a> 
+								&emsp;<a href="product/edit/?id=${product.id}">
+								<button type="button" class="button">Edit</button></a></td>
 				</tr>
 			</c:forEach>
 		</table>

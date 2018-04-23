@@ -66,15 +66,7 @@
 }
 </style>
 </head>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<br><br><br><br><br><br>
 <body>
 
 	<nav class="navbar navbar-inverse"
@@ -103,6 +95,5 @@
 	</div>
 	</nav>
 
-</body>
 </body>
 </html>

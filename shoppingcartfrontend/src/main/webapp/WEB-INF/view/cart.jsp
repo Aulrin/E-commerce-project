@@ -12,6 +12,19 @@
 <title>My Cart</title>
 
 <style>
+.check {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+	border-radius: 12px;
+}
 hr {
 height: 1px;
 background-color:black;
@@ -36,7 +49,7 @@ ${noItems}
 <hr>
 <form action="checkout" method="post">
   <table style="text-align:center;" class="table-striped">
-    <thead>
+    <thead style="background-color: black;color: white">
       <tr>
         <th style="width:10%;">Cart id</th>
         <th style="text-align:center;">Product</th>
@@ -47,7 +60,7 @@ ${noItems}
       </tr>
     </thead>
     
-    <tbody>
+    <tbody style="background-color: ghostwhite">
     <c:forEach var="cart" items="${cartList}">
       <tr>
      	 <td>${cart.id}</td>
@@ -73,7 +86,7 @@ ${noItems}
   Return Shopping</a>
   <p style="text-align:right;margin:0px 80px;"><font size="4" face="verdana"><b><i>Total : ${cartsum} </i></b></font></p></div><br>
   <p style="text-align:right;margin:0px 80px;">
-					<button style="width:10%;" formaction="checkout" method="post"> Check Out </button></p>
+					<button style="width:10%;" formaction="checkout" method="post" class="check"> Check Out </button></p>
 
 </form></div>
 </body>

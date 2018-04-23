@@ -14,15 +14,37 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+.button {
+  display: inline-block;
+  padding: 5px 15px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px #999;
+}
 
-<title>Insert title here</title>
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
 </head>
 <body>
 	${categorySuccessMessage} ${categoryErrorMessage}
 	<!-- create 3 text fields -->
 	<div class="container">
 		<form action="category/save/" method="post">
-			<table class="table table-bordered">
+			<table class="table table-bordered" style="background-color: ghostwhite;">
 				<tr>
 					<td>ID</td>
 					<td><input type="text" name='id'
@@ -40,7 +62,7 @@
 				</tr>
 			</table>
 			<div class="container">
-				<input type="submit" value='create category'>
+				<input type="submit" value='create category' class="button">
 			</div>
 		</form>
 	</div>
@@ -48,20 +70,21 @@
 	<br>
 	<div class="container">
 		<table class="table table-bordered">
-			<tr>
+			<tr style="background-color: black;color: white;">
 				<td>Category ID</td>
 				<td>Category Name</td>
 				<td>Category Description</td>
 				<td>Action</td>
 			</tr>
 			<c:forEach var="category" items="${categories}">
-				<tr>
+				<tr style="background-color: ghostwhite;">
 					<td>${category.id}</td>
 					<td>${category.name}</td>
 					<td>${category.description}</td>
 					<td><a href="category/delete/?id=${category.id}"><button
-								type="button">Delete</button></a> <a
-						href="category/edit/?id=${category.id}"><button type="button">Edit</button></a></td>
+								type="button" class="button">Delete</button></a> &emsp;
+								<a href="category/edit/?id=${category.id}">
+								<button type="button" class="button">Edit</button></a></td>
 				</tr>
 			</c:forEach>
 		</table>
